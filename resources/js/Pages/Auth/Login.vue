@@ -34,7 +34,7 @@
             </div>
 
             <div class="mt-6">
-                <PrimaryButton class="w-full" :class="{ 'opacity-25': form.processing }" :disabled="form.processing">
+                <PrimaryButton class="w-full" :class="{ 'opacity-25': form.processing }" :disabled="form.processing" style="background-color: #f07c34;">
                     Log in
                 </PrimaryButton>
             </div>
