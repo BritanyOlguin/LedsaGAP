@@ -34,7 +34,9 @@ class HandleInertiaRequests extends Middleware
     public function share(Request $request)
     {
         return array_merge(parent::share($request), [
-            'auth' => [
+            'user.roles' => $request->user() ? $request->user()->roles->pluck('name') : [],
+            'user.permissions' => $request->user() ? $request->user()->getPermissionsViaRoles()->pluck('name') : [],
+            /* 'auth' => [
                 'user' => $request->user(),
             ],
             'flash' => function () use ($request) {
@@ -42,7 +44,7 @@ class HandleInertiaRequests extends Middleware
                     'success' => $request->session()->get('success'),
                 ];
             },
-            'showingMobileMenu' => false,
+            'showingMobileMenu' => false, */
         ]);
     }
 }
