@@ -1,12 +1,16 @@
 <template>
+
     <Head title="Users" />
 
     <AuthenticatedLayout>
         <template #header>
-            Users
+            Usuarios
+            <input v-model="searchQuery" type="text" placeholder="Buscar usuarios..."
+                class="mt-2 block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50" />
         </template>
 
-        <div class="mb-4 inline-flex w-full overflow-hidden rounded-lg bg-white shadow-md">
+        <!-- Alertas de info -->
+        <!-- <div class="mb-4 inline-flex w-full overflow-hidden rounded-lg bg-white shadow-md">
             <div class="flex w-12 items-center justify-center bg-orange-600">
                 <svg class="h-6 w-6 fill-current text-white" viewBox="0 0 40 40" xmlns="http://www.w3.org/2000/svg">
                     <path
@@ -20,22 +24,30 @@
                     <p class="text-sm text-gray-600">Sample table page</p>
                 </div>
             </div>
-        </div>
-        
+        </div> -->
+
         <div class="inline-block min-w-full overflow-hidden rounded-lg shadow">
             <table class="w-full whitespace-no-wrap">
                 <thead>
-                    <tr class="border-b bg-gray-50 text-left text-xs font-semibold uppercase tracking-wide text-gray-500">
-                        <th class="border-b-2 border-gray-200 bg-gray-100 px-5 py-3 text-left text-xs font-semibold uppercase tracking-wider text-gray-600">
-                            Name
+                    <tr
+                        class="border-b bg-gray-50 text-left text-xs font-semibold uppercase tracking-wide text-gray-500">
+                        <th
+                            class="border-b-2 border-gray-200 bg-gray-100 px-5 py-3 text-left text-xs font-semibold uppercase tracking-wider text-gray-600">
+                            Nombre
                         </th>
-                        <th class="border-b-2 border-gray-200 bg-gray-100 px-5 py-3 text-left text-xs font-semibold uppercase tracking-wider text-gray-600">
-                            Email
+                        <th
+                            class="border-b-2 border-gray-200 bg-gray-100 px-5 py-3 text-left text-xs font-semibold uppercase tracking-wider text-gray-600">
+                            Correo
                         </th>
                     </tr>
                 </thead>
                 <tbody>
-                    <tr v-for="user in users.data" :key="user.id" class="text-gray-700">
+                    <tr v-if="filteredUsers.length === 0" class="text-gray-700">
+                        <td colspan="2" class="border-b border-gray-200 bg-white px-7 py-7 text-sm text-center">
+                            <p class="text-gray-900 whitespace-no-wrap" style="font-size: 17px;">No se encontraron coincidencias</p>
+                        </td>
+                    </tr>
+                    <tr v-else v-for="user in filteredUsers" :key="user.id" class="text-gray-700">
                         <td class="border-b border-gray-200 bg-white px-5 py-5 text-sm">
                             <p class="text-gray-900 whitespace-no-wrap">{{ user.name }}</p>
                         </td>
@@ -57,8 +69,21 @@
 import AuthenticatedLayout from '@/Layouts/AuthenticatedLayout.vue';
 import Pagination from '@/Components/Pagination.vue'
 import { Head } from '@inertiajs/vue3';
+import { ref } from 'vue';
+import { computed } from 'vue';
 
 const props = defineProps({
     users: Object
 })
+
+const searchQuery = ref('');
+
+const filteredUsers = computed(() => {
+    if (!searchQuery.value) {
+        return props.users.data;
+    }
+    return props.users.data.filter(user =>
+        user.name.toLowerCase().includes(searchQuery.value.toLowerCase())
+    );
+});
 </script>
