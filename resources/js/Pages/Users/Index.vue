@@ -4,9 +4,17 @@
 
     <AuthenticatedLayout>
         <template #header>
-            Usuarios
-            <input v-model="searchQuery" type="text" placeholder="Buscar usuarios..."
-                class="mt-2 block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50" />
+            <div class="flex flex-col sm:flex-row justify-between">
+                <div class="flex-grow mb-4 sm:mb-0">
+                    Usuarios
+                    <input v-model="searchQuery" type="text" placeholder="Buscar usuarios..."
+                        class="mt-2 block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50" />
+                </div>
+                <button @click="createUser"
+                    class="flex items-center justify-center rounded-md bg-[#f07c34] px-2 py-1 text-sm text-white hover:bg-[#d66a2c] focus:outline-none focus:ring-2 focus:ring-[#f07c34] focus:ring-opacity-50 sm:ml-4 sm:mt-2">
+                    <i class="pi pi-plus mr-2"></i> Crear nuevo usuario
+                </button>
+            </div>
         </template>
 
         <!-- Alertas de info -->
@@ -44,7 +52,9 @@
                 <tbody>
                     <tr v-if="filteredUsers.length === 0" class="text-gray-700">
                         <td colspan="2" class="border-b border-gray-200 bg-white px-7 py-7 text-sm text-center">
-                            <p class="text-gray-900 whitespace-no-wrap" style="font-size: 17px;">No se encontraron coincidencias</p>
+                            <p class="text-gray-900 whitespace-no-wrap" style="font-size: 17px;">No se encontraron
+                                coincidencias
+                            </p>
                         </td>
                     </tr>
                     <tr v-else v-for="user in filteredUsers" :key="user.id" class="text-gray-700">
