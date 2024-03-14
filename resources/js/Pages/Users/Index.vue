@@ -20,7 +20,7 @@
         <!-- Modal para crear nuevo usuario -->
         <div v-if="showModal" class="fixed inset-0 bg-black bg-opacity-50 flex justify-center items-center">
             <div class="bg-white p-5 rounded w-full max-w-md">
-                <h2 class="text-lg mb-4">Crear Nuevo Usuario</h2>
+                <h2 class="text-lg mb-4">Nuevo usuario</h2>
                 <form @submit.prevent="handleSubmit" class="flex flex-col gap-4">
                     <div>
                         <label for="name" class="block text-sm font-medium text-gray-700">Nombre:</label>
@@ -44,7 +44,7 @@
                             class="mt-1 block w-full rounded-md border-gray-300 shadow-sm">
                     </div>
                     <div class="flex justify-end gap-2">
-                        <button type="button" @click="showModal = false"
+                        <button type="button" @click="showModal = false; form.reset();"
                             class="bg-gray-500 text-white py-2 px-4 rounded hover:bg-gray-600 focus:outline-none focus:ring-2 focus:ring-gray-500 focus:ring-opacity-50">Cerrar</button>
                         <button type="submit"
                             class="bg-orange-600 text-white py-2 px-4 rounded hover:bg-orange-700 focus:outline-none focus:ring-2 focus:ring-orange-600 focus:ring-opacity-50">Registrar
@@ -53,23 +53,6 @@
                 </form>
             </div>
         </div>
-
-        <!-- Alertas de info -->
-        <!-- <div class="mb-4 inline-flex w-full overflow-hidden rounded-lg bg-white shadow-md">
-            <div class="flex w-12 items-center justify-center bg-orange-600">
-                <svg class="h-6 w-6 fill-current text-white" viewBox="0 0 40 40" xmlns="http://www.w3.org/2000/svg">
-                    <path
-                        d="M20 3.33331C10.8 3.33331 3.33337 10.8 3.33337 20C3.33337 29.2 10.8 36.6666 20 36.6666C29.2 36.6666 36.6667 29.2 36.6667 20C36.6667 10.8 29.2 3.33331 20 3.33331ZM21.6667 28.3333H18.3334V25H21.6667V28.3333ZM21.6667 21.6666H18.3334V11.6666H21.6667V21.6666Z"></path>
-                </svg>
-            </div>
-
-            <div class="-mx-3 px-4 py-2">
-                <div class="mx-3">
-                    <span class="font-semibold text-orange-600">Info</span>
-                    <p class="text-sm text-gray-600">Sample table page</p>
-                </div>
-            </div>
-        </div> -->
 
         <div class="inline-block min-w-full overflow-hidden rounded-lg shadow">
             <table class="w-full whitespace-no-wrap">
