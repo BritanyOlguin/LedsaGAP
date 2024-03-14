@@ -36,4 +36,7 @@ Route::middleware('auth')->group(function () {
     Route::resource('/roles', RoleController::class);
 });
 
-require __DIR__.'/auth.php';
+Route::post('/users/create', [UserController::class, 'store'])->name('users.store')->middleware('auth');
+
+
+require __DIR__ . '/auth.php';
