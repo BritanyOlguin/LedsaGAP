@@ -9,6 +9,8 @@ import PrimeVue from 'primevue/config';
 import ToastService from 'primevue/toastservice';
 import Toast from 'primevue/toast';
 import 'primeicons/primeicons.css';
+import 'primevue/resources/primevue.min.css';
+import 'primevue/resources/themes/saga-blue/theme.css'; 
 
 const appName = import.meta.env.VITE_APP_NAME || 'Laravel';
 

@@ -37,12 +37,6 @@
                         <input v-model="form.password" type="password" id="password" required
                             class="mt-1 block w-full rounded-md border-gray-300 shadow-sm">
                     </div>
-                    <div>
-                        <label for="password_confirmation" class="block text-sm font-medium text-gray-700">Confirmar
-                            contraseña:</label>
-                        <input v-model="form.password_confirmation" type="password" id="password_confirmation" required
-                            class="mt-1 block w-full rounded-md border-gray-300 shadow-sm">
-                    </div>
                     <div class="flex justify-end gap-2">
                         <button type="button" @click="showModal = false; form.reset();"
                             class="bg-gray-500 text-white py-2 px-4 rounded hover:bg-gray-600 focus:outline-none focus:ring-2 focus:ring-gray-500 focus:ring-opacity-50">Cerrar</button>
@@ -124,7 +118,6 @@ const form = useForm({
     name: '',
     email: '',
     password: '',
-    password_confirmation: '',
 });
 
 const createUser = () => showModal.value = true;
